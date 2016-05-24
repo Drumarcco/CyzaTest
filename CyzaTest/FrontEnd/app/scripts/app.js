@@ -15,11 +15,6 @@ angular
         controller: 'MainCtrl',
         access_level: ACCESS_LEVELS.pub
       })
-      .when('/login', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl',
-        access_level: ACCESS_LEVELS.pub
-      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
@@ -28,6 +23,26 @@ angular
       .when('/dashboard', {
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl',
+        access_level: ACCESS_LEVELS.user
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        access_level: ACCESS_LEVELS.pub
+      })
+      .when('/products', {
+        templateUrl: 'views/products.html',
+        controller: 'ProductsCtrl',
+        access_level: ACCESS_LEVELS.user
+      })
+      .when('/products/create', {
+        templateUrl: 'views/product-save.html',
+        controller: 'ProductSaveCtrl',
+        access_level: ACCESS_LEVELS.user
+      })
+      .when('/products/update/:id', {
+        templateUrl: 'views/product-save.html',
+        controller: 'ProductSaveCtrl',
         access_level: ACCESS_LEVELS.user
       })
       .otherwise({

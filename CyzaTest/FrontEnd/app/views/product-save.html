@@ -1,0 +1,22 @@
+<md-content>
+  <section layout="column" layout-align="center center">
+    <h1>Product</h1>
+    <md-card>
+      <form ng-submit="productForm.$valid && save()" name="productForm" novalidate>
+        <md-card-content layout="column">
+          <md-input-container>
+            <label>Name</label>
+            <input name="name" ng-model="product.Name" required maxlength="50">
+            <div ng-messages="loginForm.email.$error">
+              <div ng-message="required">Product name is required.</div>
+              <div ng-message="maxlength">The name must be shorter.</div>
+            </div>
+          </md-input-container>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end">
+          <md-button type="submit" class="md-primary" aria-label="Save">Save</md-button>
+        </md-card-actions>
+      </form>
+    </md-card>
+  </section>
+</md-content>
