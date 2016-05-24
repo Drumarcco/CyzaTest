@@ -4,7 +4,7 @@
     <h1 class="text-center">Suppliers</h1>
   </div>
   <md-button href="/#/suppliers/create" class="md-fab" aria-label="New Supplier">
-    <md-icon md-font-icon="fa fa-plus"></md-icon>
+    <md-icon md-font-icon="fa fa-24 fa-plus"></md-icon>
   </md-button>
   <div layout layout-align="center" flex>
     <div flex>
@@ -19,7 +19,7 @@
           </div>
         </md-card-content>
         <md-card-actions layout layout-align="end">
-          <md-button class="md-icon-button md-accent" aria-label="Details">
+          <md-button href="/#/suppliers/details/{{supplier.Id}}" class="md-icon-button md-accent" aria-label="Details">
             <md-icon md-font-icon="fa fa-24 fa-info-circle"></md-icon>
           </md-button>
           <md-button href="/#/suppliers/update/{{supplier.Id}}" class="md-icon-button md-primary" aria-label="Edit">

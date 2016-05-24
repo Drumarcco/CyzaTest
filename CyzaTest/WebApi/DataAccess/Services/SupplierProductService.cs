@@ -56,5 +56,25 @@ namespace WebApi.DataAccess.Services
                 return await db.SupplierProducts.FindAsync(id);
             }
         }
+
+        public async Task<List<SupplierProduct>> GetBySupplierId(int supplierId)
+        {
+            using (var db = new CyzaTestEntities())
+            {
+                return await db.SupplierProducts
+                    .Include(sp => sp.Supplier)
+                    .Include(sp => sp.Product)
+                    .Where(sp => sp.SupplierId == supplierId).ToListAsync();
+            }
+        }
+
+        public async Task<List<Product>> FindProductsNotAssigned(int supplierId)
+        {
+            using (var db = new CyzaTestEntities())
+            {
+                return await db.Products
+                    .Where(p => p.SupplierProducts.All(sp => sp.SupplierId != supplierId)).ToListAsync();
+            }
+        }
     }
 }

@@ -1,0 +1,55 @@
+<md-content flex="grow" layout="column" layout-align="start center" layout-padding>
+  <div>
+    <div layout="row" layout-align="center center" layout-margin>
+      <i class="fa fa-3x fa-truck"></i>
+      <h1 class="text-center">Supplier</h1>
+    </div>
+    <div layout layout-align="center">
+      <div layout-margin flex>
+        <md-card>
+          <md-card-content>
+            <div layout layout-align="center center">
+              <div layout="column" layout-align="center center">
+                <h5 class="m-b-0">Supplier</h5>
+                <h4>{{ supplier.Name }}</h4>
+              </div>
+            </div>
+          </md-card-content>
+        </md-card>
+      </div>
+    </div>
+  </div>
+  <div layout="column" layout-align="center center">
+    <div layout="row" layout-align="center center" layout-margin>
+      <i class="fa fa-3x fa-cutlery"></i>
+      <h1 class="text-center">Products by Supplier</h1>
+    </div>
+    <md-button href="/#/suppliers/{{supplier.Id}}/AddProduct" class="md-fab" aria-label="Add Product">
+      <md-icon md-font-icon="fa fa-24 fa-plus"></md-icon>
+    </md-button>
+    <div layout="column" layout-align="center center" flex>
+      <div flex>
+        <h2 ng-if="products.length === 0">There are no products by supplier.</h2>
+        <md-card ng-repeat="product in products">
+          <md-card-content>
+            <div layout="column" layout-align="center center">
+              <div layout="column" layout-align="center center">
+                <h5 class="m-b-0">Product</h5>
+                <h4>{{ product.Name }}</h4>
+              </div>
+              <div>
+                <h5 class="m-b-0">Price</h5>
+                <h4>{{ product.Price | currency }}</h4>
+              </div>
+            </div>
+          </md-card-content>
+          <md-card-actions layout layout-align="end">
+            <md-button ng-click="deleteSupplierProduct(product)" class="md-icon-button md-warn" aria-label="Delete">
+              <md-icon md-font-icon="fa fa-24 fa-trash"></md-icon>
+            </md-button>
+          </md-card-actions>
+        </md-card>
+      </div>
+    </div>
+  </div>
+</md-content>

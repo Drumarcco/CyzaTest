@@ -1,10 +1,10 @@
-<md-content flex="grow" layout="column" layout-align="start center" layout-padding>
+<md-content flex="grow" layout="column" layout-align="center center" layout-padding>
   <div layout="row" layout-align="center center" layout-margin>
     <i class="fa fa-3x fa-cutlery"></i>
     <h1 class="text-center">Products</h1>
   </div>
   <md-button href="/#/products/create" class="md-fab" aria-label="New Product">
-    <md-icon md-font-icon="fa fa-plus"></md-icon>
+    <md-icon md-font-icon="fa fa-24 fa-plus"></md-icon>
   </md-button>
   <div layout layout-align="center" flex>
     <div flex>
@@ -19,9 +19,6 @@
           </div>
         </md-card-content>
         <md-card-actions layout layout-align="end">
-          <md-button class="md-icon-button md-accent" aria-label="Details">
-            <md-icon md-font-icon="fa fa-24 fa-info-circle"></md-icon>
-          </md-button>
           <md-button href="/#/products/update/{{product.Id}}" class="md-icon-button md-primary" aria-label="Edit">
             <md-icon md-font-icon="fa fa-24 fa-pencil"></md-icon>
           </md-button>

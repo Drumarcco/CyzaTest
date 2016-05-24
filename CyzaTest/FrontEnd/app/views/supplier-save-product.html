@@ -1,0 +1,27 @@
+<md-content>
+  <section layout="column" layout-align="center center">
+    <h1>Product by Supplier</h1>
+    <md-card>
+      <form ng-submit="supplierProductForm.$valid && save()" name="supplierProductForm" novalidate>
+        <md-card-content layout="column">
+          <md-input-container>
+            <md-select name="product" ng-model="supplierProduct.ProductId" placeholder="Select a product"
+            required>
+              <md-option ng-repeat="product in products" ng-value="product.Id">{{product.Name}}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+            <label>Price</label>
+            <input type="number" name="price" required ng-model="supplierProduct.Price">
+            <div ng-messages="supplierProductForm.price.$error">
+              <div ng-message="required">Product name is required.</div>
+            </div>
+          </md-input-container>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end">
+          <md-button type="submit" class="md-primary" aria-label="Save">Save</md-button>
+        </md-card-actions>
+      </form>
+    </md-card>
+  </section>
+</md-content>

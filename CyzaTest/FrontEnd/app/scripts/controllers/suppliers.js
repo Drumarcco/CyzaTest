@@ -10,7 +10,7 @@
     });
 
     $scope.delete = function (supplier) {
-      var index = $scope.products.indexOf(supplier);
+      var index = $scope.suppliers.indexOf(supplier);
       if(index !== -1) {
         SupplierService.delete(supplier.Id).then(function() {
           $scope.products.splice( index, 1 );

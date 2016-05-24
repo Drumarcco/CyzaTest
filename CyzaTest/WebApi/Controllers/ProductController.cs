@@ -10,6 +10,7 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/Product")]
     public class ProductController : BaseAPIController
     {

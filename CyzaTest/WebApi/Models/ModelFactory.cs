@@ -17,5 +17,24 @@ namespace WebApi.Models
             _urlHelper = new UrlHelper(request);
             _appUserManager = appUserManager;
         }
+
+        public object Create(List<SupplierProduct> supplierProducts)
+        {
+            return supplierProducts.Select(sp => new
+            {
+                sp.ProductId,
+                sp.Product.Name,
+                sp.Price,   
+            });
+        }
+
+        public object Create(List<Product> products)
+        {
+            return products.Select(p => new
+            {
+                p.Id,
+                p.Name
+            });
+        }
     }
 }

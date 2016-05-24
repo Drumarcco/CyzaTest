@@ -10,6 +10,7 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/Supplier")]
     public class SupplierController : BaseAPIController
     {
@@ -34,6 +35,33 @@ namespace WebApi.Controllers
             return Ok(supplier);
         }
 
+        [Route("{id}/Products")]
+        public async Task<IHttpActionResult> GetProducts(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var supplierProductService = new SupplierProductService();
+            var supplierProducts = await supplierProductService.GetBySupplierId(id);
+            if (supplierProducts.Count == 0) return NotFound();
+            return Ok(ModelFactory.Create(supplierProducts));
+        }
+
+        [Route("{id}/UnassignedProducts")]
+        public async Task<IHttpActionResult> GetUnassignedProducts(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var supplierProductService = new SupplierProductService();
+            var products = await supplierProductService.FindProductsNotAssigned(id);
+            return Ok(ModelFactory.Create(products));
+        }
+
         public async Task<IHttpActionResult> Post(PostSupplier model)
         {
             if (!ModelState.IsValid)
@@ -47,6 +75,28 @@ namespace WebApi.Controllers
             };
 
             var changes = await service.Save(supplier);
+            if (changes == 0) return InternalServerError();
+            return Ok();
+        }
+
+        [Route("Product")]
+        [HttpPost]
+        public async Task<IHttpActionResult> PostProduct(SupplierProductBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var supplierProduct = new SupplierProduct
+            {
+                ProductId = model.ProductId,
+                SupplierId = model.SupplierId,
+                Price = model.Price
+            };
+
+            var supplierProductService = new SupplierProductService();
+            var changes = await supplierProductService.Save(supplierProduct);
             if (changes == 0) return InternalServerError();
             return Ok();
         }
@@ -77,6 +127,27 @@ namespace WebApi.Controllers
 
             var supplier = new Supplier { Id = id };
             var changes = await service.Delete(supplier);
+            if (changes >= 1) return Ok();
+            return NotFound();
+        }
+
+        [Route("{supplierId}/Product/{productId}")]
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeleteProduct(int supplierId, int productId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var supplierProduct = new SupplierProduct
+            {
+                SupplierId = supplierId,
+                ProductId = productId
+            };
+
+            var supplierProductService = new SupplierProductService();
+            var changes = await supplierProductService.Delete(supplierProduct);
             if (changes >= 1) return Ok();
             return NotFound();
         }
