@@ -45,6 +45,21 @@ angular
         controller: 'ProductSaveCtrl',
         access_level: ACCESS_LEVELS.user
       })
+      .when('/suppliers', {
+        templateUrl: 'views/suppliers.html',
+        controller: 'SuppliersCtrl',
+        access_level: ACCESS_LEVELS.user
+      })
+      .when('/suppliers/create', {
+        templateUrl: 'views/supplier-save.html',
+        controller: 'SupplierSaveCtrl',
+        access_level: ACCESS_LEVELS.user
+      })
+      .when('/suppliers/update/:id', {
+        templateUrl: 'views/supplier-save.html',
+        controller: 'SupplierSaveCtrl',
+        access_level: ACCESS_LEVELS.user
+      })
       .otherwise({
         redirectTo: '/'
       });
