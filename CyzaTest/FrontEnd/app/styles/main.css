@@ -1,0 +1,52 @@
+* {
+  font-family: Roboto;
+}
+
+h1, h2 {
+  font-weight: 300;
+}
+
+h3, h4 {
+  font-weight: 200;
+}
+
+body {
+  padding: 0;
+}
+
+section {
+  background-color: #F1F0F0;
+  min-height: 50vh;
+  height: calc(100vh - 56px);
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: lightgray;
+}
+
+p {
+  font-size: 1.6rem;
+}
+
+md-card {
+  min-width: 40vw;
+}
+
+.text-center {
+  text-align: center;
+  background-size: cover;
+}
+
+#header {
+  color: white;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)),
+  url(https://upload.wikimedia.org/wikipedia/commons/7/73/NewportBeachBackBayCA_photo_D_Ramey_Logan.JPG);
+}
+
+#header h1 {
+  margin: 0;
+}

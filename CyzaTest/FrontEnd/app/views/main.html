@@ -1,0 +1,45 @@
+<md-content flex="grow">
+  <section id="header" class="text-center" layout="column" layout-align="center center">
+    <h1 class="md-display-2">Cyza Test</h1>
+    <p>Marco Alvarado's implementation for Cyza Inc test</p>
+  </section>
+  <section layout="column" layout-align="center center">
+    <h1>Sign Up</h1>
+    <md-card>
+      <form ng-submit="signUpForm.$valid && signUp()" name="signUpForm" novalidate>
+        <md-card-content layout="column">
+          <md-input-container>
+            <label>Email</label>
+            <input name="email" type="email" ng-model="user.Email" required>
+            <div ng-messages="signUpForm.email.$error">
+              <div ng-message="required">Email is required.</div>
+              <div ng-message="email">It should be an email like example@example.com</div>
+            </div>
+          </md-input-container>
+          <md-input-container>
+            <label>Password</label>
+            <input name="password" type="password" ng-model="user.Password" required
+            minlength="6" maxlength="100">
+            <div ng-messages="signUpForm.password.$error">
+              <div ng-message="required">Password is required.</div>
+              <div ng-message="minlength">Password must be 6 characters or longer.</div>
+              <div ng-message="maxlength">Password must be 100 characters or shorter.</div>
+            </div>
+          </md-input-container>
+          <md-input-container>
+            <label>Confirm Password</label>
+            <input name="confirmPassword" type="password" ng-model="user.ConfirmPassword"
+            confirm-password="user.Password" required>
+            <div ng-messages="signUpForm.confirmPassword.$error">
+              <div ng-message="confirm-password">Passwords do not match.</div>
+              <div ng-message="required">Password is required.</div>
+            </div>
+          </md-input-container>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end">
+          <md-button type="submit" class="md-primary" aria-label="Sign Up">Sign Up</md-button>
+        </md-card-actions>
+      </form>
+    </md-card>
+  </section>
+</md-content>

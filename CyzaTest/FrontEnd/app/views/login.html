@@ -1,0 +1,32 @@
+<md-content>
+  <section layout="column" layout-align="center center">
+    <h1>Log In</h1>
+    <md-card>
+      <form ng-submit="loginForm.$valid && login()" name="loginForm" novalidate>
+        <md-card-content layout="column">
+          <md-input-container>
+            <label>Email</label>
+            <input name="email" type="email" ng-model="user.username" required>
+            <div ng-messages="loginForm.email.$error">
+              <div ng-message="required">Email is required.</div>
+              <div ng-message="email">It should be an email like example@example.com</div>
+            </div>
+          </md-input-container>
+          <md-input-container>
+            <label>Password</label>
+            <input name="password" type="password" ng-model="user.password" required
+            minlength="6" maxlength="100">
+            <div ng-messages="loginForm.password.$error">
+              <div ng-message="required">Password is required.</div>
+              <div ng-message="minlength">Password must be 6 characters or longer.</div>
+              <div ng-message="maxlength">Password must be 100 characters or shorter.</div>
+            </div>
+          </md-input-container>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end">
+          <md-button type="submit" class="md-primary" aria-label="Log In">Log In</md-button>
+        </md-card-actions>
+      </form>
+    </md-card>
+  </section>
+</md-content>
