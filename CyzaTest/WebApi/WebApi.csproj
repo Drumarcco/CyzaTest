@@ -222,10 +222,13 @@
     <Compile Include="Controllers\BaseAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="DataAccess\IService.cs" />
     <Compile Include="DataAccess\Repositories\ProductRepository.cs" />
+    <Compile Include="DataAccess\Repositories\SupplierRepository.cs" />
     <Compile Include="DataAccess\Repository.cs" />
     <Compile Include="DataAccess\Services\ProductService.cs" />
+    <Compile Include="DataAccess\Services\SupplierService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -258,6 +261,7 @@
     <Compile Include="Models\Supplier.cs">
       <DependentUpon>CyzaTestContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SupplierBindingModel.cs" />
     <Compile Include="Models\SupplierProduct.cs">
       <DependentUpon>CyzaTestContext.tt</DependentUpon>
     </Compile>

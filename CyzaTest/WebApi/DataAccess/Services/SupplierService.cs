@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -9,51 +10,51 @@ using WebApi.Models;
 
 namespace WebApi.DataAccess.Services
 {
-    public class ProductService : IService<Product>
+    public class SupplierService : IService<Supplier>
     {
-        public async Task<int> Save(Product product)
+        public async Task<int> Save(Supplier supplier)
         {
             using (var db = new CyzaTestEntities())
             {
-                var repository = new ProductRepository(db);
-                repository.Insert(product);
+                var repository = new SupplierRepository(db);
+                repository.Insert(supplier);
                 return await db.SaveChangesAsync();
             }
         }
 
-        public async Task<int> Update(Product product)
+        public async Task<int> Update(Supplier supplier)
         {
             using (var db = new CyzaTestEntities())
             {
-                var repository = new ProductRepository(db);
-                repository.Update(product);
+                var repository = new SupplierRepository(db);
+                repository.Update(supplier);
                 return await db.SaveChangesAsync();
             }
         }
 
-        public async Task<int> Delete(Product product)
-        {
+        public async Task<int> Delete(Supplier supplier)
+        {   
             using (var db = new CyzaTestEntities())
             {
-                var repository = new ProductRepository(db);
-                repository.Delete(product);
+                var repository = new SupplierRepository(db);
+                repository.Delete(supplier);
                 return await db.SaveChangesAsync();
             }
         }
 
-        public async Task<List<Product>> GetAll()
+        public async Task<List<Supplier>> GetAll()
         {
             using (var db = new CyzaTestEntities())
             {
-                return await db.Products.ToListAsync();
+                return await db.Suppliers.ToListAsync();
             }
         }
 
-        public async Task<Product> GetById(params object[] id)
+        public async Task<Supplier> GetById(params object[] id)
         {
             using (var db = new CyzaTestEntities())
             {
-                return await db.Products.FindAsync(id);
+                return await db.Suppliers.FindAsync(id);
             }
         }
     }
