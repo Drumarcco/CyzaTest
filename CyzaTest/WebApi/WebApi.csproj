@@ -223,11 +223,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\SupplierProductController.cs" />
     <Compile Include="DataAccess\IService.cs" />
     <Compile Include="DataAccess\Repositories\ProductRepository.cs" />
+    <Compile Include="DataAccess\Repositories\SupplierProductRepository.cs" />
     <Compile Include="DataAccess\Repositories\SupplierRepository.cs" />
     <Compile Include="DataAccess\Repository.cs" />
     <Compile Include="DataAccess\Services\ProductService.cs" />
+    <Compile Include="DataAccess\Services\SupplierProductService.cs" />
     <Compile Include="DataAccess\Services\SupplierService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -268,6 +271,12 @@
     </Compile>
     <Compile Include="Models\ProductBindingModel.cs" />
     <Compile Include="Models\Stock.cs">
+      <DependentUpon>CyzaTestContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StockMovement.cs">
+      <DependentUpon>CyzaTestContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StockMovementType.cs">
       <DependentUpon>CyzaTestContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Supplier.cs">

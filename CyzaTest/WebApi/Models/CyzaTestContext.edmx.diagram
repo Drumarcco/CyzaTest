@@ -19,10 +19,10 @@
         <AssociationConnector Association="CyzaTestModel.AspNetUserRoles" />
         <EntityTypeShape EntityType="CyzaTestModel.Stock" Width="1.5" PointX="2.75" PointY="3.25" />
         <AssociationConnector Association="CyzaTestModel.FK_Stock_SupplierProduct" />
-        <EntityTypeShape EntityType="CyzaTestModel.StockMovement" Width="1.5" PointX="2.75" PointY="5.625" />
+        <EntityTypeShape EntityType="CyzaTestModel.StockMovement" Width="1.5" PointX="2.75" PointY="6" />
         <AssociationConnector Association="CyzaTestModel.FK_StockMovement_AspNetUsers" />
         <AssociationConnector Association="CyzaTestModel.FK_StockMovement_Stock" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

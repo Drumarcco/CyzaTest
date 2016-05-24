@@ -80,7 +80,7 @@
           <Property Name="SupplierId" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Type" Type="bit" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Supplier">
@@ -365,7 +365,7 @@
             <End Role="Stock" EntitySet="Stocks" />
             <End Role="StockMovement" EntitySet="StockMovements" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
             <PropertyRef Name="Id" />
@@ -473,6 +473,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EnumType Name="StockMovementType" UnderlyingType="Byte">
+          <Member Name="Outbound" Value="0" />
+          <Member Name="Inbound" Value="1" />
+        </EnumType>
         <EntityType Name="StockMovement">
           <Key>
             <PropertyRef Name="Id" />
@@ -512,10 +516,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EnumType Name="StockMovementType" UnderlyingType="Byte">
-          <Member Name="Outbound" Value="0" />
-          <Member Name="Inbound" Value="1" />
-        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

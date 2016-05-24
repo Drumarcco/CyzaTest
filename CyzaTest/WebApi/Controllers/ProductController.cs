@@ -14,7 +14,7 @@ namespace WebApi.Controllers
     public class ProductController : BaseAPIController
     {
         readonly ProductService service = new ProductService();
-        // GET: api/Product
+        
         public async Task<IHttpActionResult> Get()
         {
             var products = await service.GetAll();
@@ -22,7 +22,6 @@ namespace WebApi.Controllers
             return Ok(products);
         }
 
-        // GET: api/Product/5
         public async Task<IHttpActionResult> Get(int id)
         {
             if (!ModelState.IsValid)
@@ -35,7 +34,6 @@ namespace WebApi.Controllers
             return Ok(product);
         }
 
-        // POST: api/Product
         public async Task<IHttpActionResult> Post(PostProduct model)
         {
             if (!ModelState.IsValid)
@@ -53,7 +51,6 @@ namespace WebApi.Controllers
             return Ok();
         }
 
-        // PUT: api/Product/5
         public async Task<IHttpActionResult> Put(PutProduct model)
         {
             if (!ModelState.IsValid)
@@ -71,7 +68,6 @@ namespace WebApi.Controllers
             return Ok();
         }
 
-        // DELETE: api/Product/5
         public async Task<IHttpActionResult> Delete(int id)
         {
             if (!ModelState.IsValid)
