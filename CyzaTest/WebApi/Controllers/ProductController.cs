@@ -44,7 +44,11 @@ namespace WebApi.Controllers
 
             var product = new Product
             {
-                Name = model.Name
+                Name = model.Name,
+                Stock = new Stock
+                {
+                   Quantity = 0
+                }
             };
 
             var changes = await service.Save(product);

@@ -22,6 +22,6 @@ namespace WebApi.Models
         public int Quantity { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
-        public virtual Stock Stock { get; set; }
+        public virtual SupplierProduct SupplierProduct { get; set; }
     }
 }

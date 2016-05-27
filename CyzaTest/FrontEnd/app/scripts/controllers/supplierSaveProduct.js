@@ -6,20 +6,35 @@
     $scope.products = [];
     $scope.supplierProduct = {
       SupplierId: $routeParams.id,
-      ProductId: 0,
+      ProductId: $routeParams.productId || 0,
       Price: 0
     };
 
+    if ($routeParams.productId) {
+      SupplierService.getProduct($routeParams.id, $routeParams.productId).then(function(response) {
+        $scope.supplierProduct = response.data;
+        $scope.products.push(response.data);
+      });
+    } else {
+      SupplierService.getUnassignedProducts($routeParams.id).then(function(response) {
+        $scope.products = response.data;
+      });
+    }
+
     $scope.save = function() {
-      SupplierService.postProduct($scope.supplierProduct)
+      if ($routeParams.productId) {
+        SupplierService.putProduct($scope.supplierProduct)
+        .then(function() {
+          $mdToast.showSimple('Product by supplier updated successfully.');
+          $location.path('/suppliers/details/' + $routeParams.id);
+        });
+      } else {
+        SupplierService.postProduct($scope.supplierProduct)
         .then(function() {
           $mdToast.showSimple('Product by supplier saved.');
-          $location.path('/#/suppliers/details/' + $routeParams.id);
+          $location.path('/suppliers/details/' + $routeParams.id);
         });
+      }
     };
-
-    SupplierService.getUnassignedProducts($routeParams.id).then(function(response) {
-      $scope.products = response.data;
-    });
   }
 })();

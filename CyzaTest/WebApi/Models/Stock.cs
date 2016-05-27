@@ -14,18 +14,9 @@ namespace WebApi.Models
     
     public partial class Stock
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Stock()
-        {
-            this.StockMovements = new HashSet<StockMovement>();
-        }
-    
-        public int SupplierId { get; set; }
         public int ProductId { get; set; }
         public int Quantity { get; set; }
     
-        public virtual SupplierProduct SupplierProduct { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StockMovement> StockMovements { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

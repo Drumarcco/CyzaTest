@@ -57,6 +57,21 @@ namespace WebApi.DataAccess.Services
             }
         }
 
+        public async Task<SupplierProduct> GetById(params int[] id)
+        {
+            var supplierId = id[0];
+            var productId = id[1];
+
+            using (var db = new CyzaTestEntities())
+            {
+                return await db.SupplierProducts
+                    .Include(sp => sp.Product)
+                    .Include(sp => sp.Supplier)
+                    .SingleOrDefaultAsync(sp => sp.SupplierId == supplierId
+                    && sp.ProductId == productId);
+            }
+        }
+
         public async Task<List<SupplierProduct>> GetBySupplierId(int supplierId)
         {
             using (var db = new CyzaTestEntities())

@@ -70,6 +70,11 @@ angular
         controller: 'SupplierSaveProductCtrl',
         access_level: ACCESS_LEVELS.user
       })
+      .when('/suppliers/:id/Product/:productId', {
+        templateUrl: 'views/supplier-save-product.html',
+        controller: 'SupplierSaveProductCtrl',
+        access_level: ACCESS_LEVELS.user
+      })
       .otherwise({
         redirectTo: '/'
       });

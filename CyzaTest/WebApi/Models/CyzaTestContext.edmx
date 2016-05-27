@@ -65,10 +65,8 @@
         </EntityType>
         <EntityType Name="Stock">
           <Key>
-            <PropertyRef Name="SupplierId" />
             <PropertyRef Name="ProductId" />
           </Key>
-          <Property Name="SupplierId" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
         </EntityType>
@@ -155,16 +153,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Stock_SupplierProduct">
-          <End Role="SupplierProduct" Type="Self.SupplierProduct" Multiplicity="1" />
+        <Association Name="FK_Stock_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="Stock" Type="Self.Stock" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="SupplierProduct">
-              <PropertyRef Name="SupplierId" />
-              <PropertyRef Name="ProductId" />
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Stock">
-              <PropertyRef Name="SupplierId" />
               <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
@@ -181,11 +177,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StockMovement_Stock">
-          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+        <Association Name="FK_StockMovement_SupplierProduct">
+          <End Role="SupplierProduct" Type="Self.SupplierProduct" Multiplicity="1" />
           <End Role="StockMovement" Type="Self.StockMovement" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Stock">
+            <Principal Role="SupplierProduct">
               <PropertyRef Name="SupplierId" />
               <PropertyRef Name="ProductId" />
             </Principal>
@@ -196,7 +192,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SupplierProduct_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SupplierProduct" Type="Self.SupplierProduct" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
@@ -208,7 +206,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SupplierProduct_Supplier">
-          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SupplierProduct" Type="Self.SupplierProduct" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Supplier">
@@ -246,16 +246,16 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK_Stock_SupplierProduct" Association="Self.FK_Stock_SupplierProduct">
-            <End Role="SupplierProduct" EntitySet="SupplierProduct" />
+          <AssociationSet Name="FK_Stock_Product" Association="Self.FK_Stock_Product">
+            <End Role="Product" EntitySet="Product" />
             <End Role="Stock" EntitySet="Stock" />
           </AssociationSet>
           <AssociationSet Name="FK_StockMovement_AspNetUsers" Association="Self.FK_StockMovement_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="StockMovement" EntitySet="StockMovement" />
           </AssociationSet>
-          <AssociationSet Name="FK_StockMovement_Stock" Association="Self.FK_StockMovement_Stock">
-            <End Role="Stock" EntitySet="Stock" />
+          <AssociationSet Name="FK_StockMovement_SupplierProduct" Association="Self.FK_StockMovement_SupplierProduct">
+            <End Role="SupplierProduct" EntitySet="SupplierProduct" />
             <End Role="StockMovement" EntitySet="StockMovement" />
           </AssociationSet>
           <AssociationSet Name="FK_SupplierProduct_Product" Association="Self.FK_SupplierProduct_Product">
@@ -278,6 +278,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="SupplierProducts" Relationship="Self.FK_SupplierProduct_Product" FromRole="Product" ToRole="SupplierProduct" />
+          <NavigationProperty Name="Stock" Relationship="CyzaTestModel.FK_Stock_Product" FromRole="Product" ToRole="Stock" />
         </EntityType>
         <EntityType Name="Supplier">
           <Key>
@@ -297,7 +298,7 @@
           <Property Name="Price" Type="Double" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Self.FK_SupplierProduct_Product" FromRole="SupplierProduct" ToRole="Product" />
           <NavigationProperty Name="Supplier" Relationship="Self.FK_SupplierProduct_Supplier" FromRole="SupplierProduct" ToRole="Supplier" />
-          <NavigationProperty Name="Stock" Relationship="CyzaTestModel.FK_Stock_SupplierProduct" FromRole="SupplierProduct" ToRole="Stock" />
+          <NavigationProperty Name="StockMovements" Relationship="CyzaTestModel.FK_StockMovement_SupplierProduct" FromRole="SupplierProduct" ToRole="StockMovement" />
         </EntityType>
         <Association Name="FK_SupplierProduct_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
@@ -352,17 +353,17 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="Stocks" EntityType="CyzaTestModel.Stock" />
-          <AssociationSet Name="FK_Stock_SupplierProduct" Association="CyzaTestModel.FK_Stock_SupplierProduct">
-            <End Role="SupplierProduct" EntitySet="SupplierProducts" />
-            <End Role="Stock" EntitySet="Stocks" />
-          </AssociationSet>
           <EntitySet Name="StockMovements" EntityType="CyzaTestModel.StockMovement" />
           <AssociationSet Name="FK_StockMovement_AspNetUsers" Association="CyzaTestModel.FK_StockMovement_AspNetUsers">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="StockMovement" EntitySet="StockMovements" />
           </AssociationSet>
-          <AssociationSet Name="FK_StockMovement_Stock" Association="CyzaTestModel.FK_StockMovement_Stock">
+          <AssociationSet Name="FK_Stock_Product" Association="CyzaTestModel.FK_Stock_Product">
+            <End Role="Product" EntitySet="Products" />
             <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockMovement_SupplierProduct" Association="CyzaTestModel.FK_StockMovement_SupplierProduct">
+            <End Role="SupplierProduct" EntitySet="SupplierProducts" />
             <End Role="StockMovement" EntitySet="StockMovements" />
           </AssociationSet>
           </EntityContainer>
@@ -448,35 +449,18 @@
           <End Type="CyzaTestModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="CyzaTestModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityType Name="Stock">
-          <Key>
-            <PropertyRef Name="SupplierId" />
-            <PropertyRef Name="ProductId" />
-          </Key>
-          <Property Name="SupplierId" Type="Int32" Nullable="false" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SupplierProduct" Relationship="CyzaTestModel.FK_Stock_SupplierProduct" FromRole="Stock" ToRole="SupplierProduct" />
-          <NavigationProperty Name="StockMovements" Relationship="CyzaTestModel.FK_StockMovement_Stock" FromRole="Stock" ToRole="StockMovement" />
-        </EntityType>
-        <Association Name="FK_Stock_SupplierProduct">
-          <End Type="CyzaTestModel.SupplierProduct" Role="SupplierProduct" Multiplicity="1" />
-          <End Type="CyzaTestModel.Stock" Role="Stock" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="SupplierProduct">
-              <PropertyRef Name="SupplierId" />
-              <PropertyRef Name="ProductId" />
-            </Principal>
-            <Dependent Role="Stock">
-              <PropertyRef Name="SupplierId" />
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EnumType Name="StockMovementType" UnderlyingType="Byte">
           <Member Name="Outbound" Value="0" />
           <Member Name="Inbound" Value="1" />
         </EnumType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="CyzaTestModel.FK_Stock_Product" FromRole="Stock" ToRole="Product" />
+        </EntityType>
         <EntityType Name="StockMovement">
           <Key>
             <PropertyRef Name="Id" />
@@ -488,7 +472,7 @@
           <Property Name="Type" Type="CyzaTestModel.StockMovementType" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AspNetUser" Relationship="CyzaTestModel.FK_StockMovement_AspNetUsers" FromRole="StockMovement" ToRole="AspNetUser" />
-          <NavigationProperty Name="Stock" Relationship="CyzaTestModel.FK_StockMovement_Stock" FromRole="StockMovement" ToRole="Stock" />
+          <NavigationProperty Name="SupplierProduct" Relationship="CyzaTestModel.FK_StockMovement_SupplierProduct" FromRole="StockMovement" ToRole="SupplierProduct" />
         </EntityType>
         <Association Name="FK_StockMovement_AspNetUsers">
           <End Type="CyzaTestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -502,11 +486,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StockMovement_Stock">
-          <End Type="CyzaTestModel.Stock" Role="Stock" Multiplicity="1" />
+        <Association Name="FK_Stock_Product">
+          <End Type="CyzaTestModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="CyzaTestModel.Stock" Role="Stock" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockMovement_SupplierProduct">
+          <End Type="CyzaTestModel.SupplierProduct" Role="SupplierProduct" Multiplicity="1" />
           <End Type="CyzaTestModel.StockMovement" Role="StockMovement" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Stock">
+            <Principal Role="SupplierProduct">
               <PropertyRef Name="SupplierId" />
               <PropertyRef Name="ProductId" />
             </Principal>
@@ -605,7 +601,6 @@
               <MappingFragment StoreEntitySet="Stock">
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,13 +1,15 @@
-<md-content flex="grow" layout="column" layout-align="start center" layout-padding>
-  <div layout="row" layout-align="center center" layout-margin>
+<md-content flex="grow" layout-align="start center" layout-padding>
+  <div layout="row" layout-align="center" layout-margin>
     <i class="fa fa-3x fa-truck"></i>
     <h1 class="text-center">Suppliers</h1>
   </div>
-  <md-button href="/#/suppliers/create" class="md-fab" aria-label="New Supplier">
-    <md-icon md-font-icon="fa fa-24 fa-plus"></md-icon>
-  </md-button>
-  <div layout layout-align="center" flex>
-    <div flex>
+  <div layout="column" layout-align="center center">
+    <md-button href="/#/suppliers/create" class="md-fab" aria-label="New Supplier">
+      <md-icon md-font-icon="fa fa-24 fa-plus"></md-icon>
+    </md-button>
+  </div>
+
+  <div layout="column" layout-align="center center">
       <h2 ng-if="suppliers.length === 0">There are no suppliers.</h2>
       <md-card ng-repeat="supplier in suppliers">
         <md-card-content>
@@ -30,6 +32,5 @@
           </md-button>
         </md-card-actions>
       </md-card>
-    </div>
   </div>
 </md-content>

@@ -20,21 +20,48 @@ namespace WebApi.Models
 
         public object Create(List<SupplierProduct> supplierProducts)
         {
-            return supplierProducts.Select(sp => new
-            {
-                sp.ProductId,
-                sp.Product.Name,
-                sp.Price,   
-            });
+            return supplierProducts.Select(Create);
         }
 
         public object Create(List<Product> products)
         {
-            return products.Select(p => new
+            return products.Select(Create);
+        }
+
+        public SupplierProductReturnModel Create(SupplierProduct supplierProduct)
+        {
+            return new SupplierProductReturnModel
             {
-                p.Id,
-                p.Name
-            });
+                ProductId = supplierProduct.ProductId,
+                SupplierId = supplierProduct.SupplierId,
+                Price = supplierProduct.Price,
+                ProductName = supplierProduct.Product.Name,
+                SupplierName = supplierProduct.Supplier.Name
+            };
+        }
+
+        public ProductReturnModel Create(Product product)
+        {
+            return new ProductReturnModel
+            {
+                Id = product.Id,
+                Name = product.Name
+            };
+        }
+
+        public class SupplierProductReturnModel
+        {
+            public int ProductId { get; set; }
+            public string ProductName { get; set; }
+            public double Price { get; set; }
+            public int SupplierId { get; set; }
+            public string SupplierName { get; set; }
+        }
+
+        public class ProductReturnModel
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
         }
     }
 }

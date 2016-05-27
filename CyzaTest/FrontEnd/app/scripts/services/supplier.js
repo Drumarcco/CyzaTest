@@ -10,10 +10,20 @@
       postProduct: postProduct,
       put: put,
       delete: deleteSupplier,
+      getProduct: getProduct,
       getProducts: getProducts,
       deleteProduct: deleteProduct,
+      putProduct: putProduct,
       getUnassignedProducts: getUnassignedProducts
     };
+
+    function putProduct(supplierProduct) {
+      return $http.put(basePath + 'api/Supplier/Product', supplierProduct);
+    }
+
+    function getProduct(supplierId, productId) {
+      return $http.get(basePath + 'api/Supplier/' + supplierId + '/Product/' + productId);
+    }
 
     function deleteProduct(supplierId, productId) {
       return $http.delete(basePath + 'api/Supplier/' + supplierId + '/Product/' + productId);
