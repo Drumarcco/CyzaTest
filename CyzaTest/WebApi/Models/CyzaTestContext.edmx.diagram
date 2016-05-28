@@ -5,19 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f58edacb0326422391deca96e355c0f6" Name="Diagram1">
-        <EntityTypeShape EntityType="CyzaTestModel.Product" Width="1.5" PointX="5.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CyzaTestModel.Product" Width="1.5" PointX="5" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CyzaTestModel.Supplier" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CyzaTestModel.SupplierProduct" Width="1.5" PointX="2.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CyzaTestModel.SupplierProduct" Width="1.5" PointX="2.75" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="CyzaTestModel.FK_SupplierProduct_Product" ManuallyRouted="false" />
         <AssociationConnector Association="CyzaTestModel.FK_SupplierProduct_Supplier" ManuallyRouted="false" />
         <EntityTypeShape EntityType="CyzaTestModel.AspNetRole" Width="1.5" PointX="8.375" PointY="8.75" />
-        <EntityTypeShape EntityType="CyzaTestModel.AspNetUserClaim" Width="1.5" PointX="9.25" PointY="5.375" />
-        <EntityTypeShape EntityType="CyzaTestModel.AspNetUserLogin" Width="1.5" PointX="8.125" PointY="2.625" />
+        <EntityTypeShape EntityType="CyzaTestModel.AspNetUserClaim" Width="1.5" PointX="8.25" PointY="5.875" />
+        <EntityTypeShape EntityType="CyzaTestModel.AspNetUserLogin" Width="1.5" PointX="8.25" PointY="3.375" />
         <EntityTypeShape EntityType="CyzaTestModel.AspNetUser" Width="1.5" PointX="5.875" PointY="4.625" />
         <AssociationConnector Association="CyzaTestModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CyzaTestModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CyzaTestModel.AspNetUserRoles" />
-        <EntityTypeShape EntityType="CyzaTestModel.Stock" Width="1.5" PointX="7.5" PointY="0.625" />
+        <EntityTypeShape EntityType="CyzaTestModel.Stock" Width="1.5" PointX="7.5" PointY="1.25" />
         <EntityTypeShape EntityType="CyzaTestModel.StockMovement" Width="1.5" PointX="2.75" PointY="4.5" />
         <AssociationConnector Association="CyzaTestModel.FK_StockMovement_AspNetUsers" />
         <AssociationConnector Association="CyzaTestModel.FK_Stock_Product" />

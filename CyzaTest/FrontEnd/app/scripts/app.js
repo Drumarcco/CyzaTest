@@ -75,6 +75,11 @@ angular
         controller: 'SupplierSaveProductCtrl',
         access_level: ACCESS_LEVELS.user
       })
+      .when('/stock', {
+        templateUrl: 'views/restock.html',
+        controller: 'RestockCtrl',
+        access_level: ACCESS_LEVELS.user
+      })
       .otherwise({
         redirectTo: '/'
       });

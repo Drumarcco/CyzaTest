@@ -1,0 +1,38 @@
+<md-content>
+  <section layout="column" layout-align="center center">
+    <h1>Restock</h1>
+    <md-card>
+      <form ng-submit="restockForm.$valid && restock()" name="restockForm" novalidate>
+        <md-card-content layout="column">
+          <md-input-container>
+            <label>Select a supplier</label>
+            <md-select name="supplier" ng-model="restockMovement.SupplierId"
+              ng-change="loadProducts()">
+                <md-option ng-repeat="supplier in suppliers" ng-value="supplier.Id">
+                  {{ supplier.Name }}
+                </md-option>
+              </md-select>
+          </md-input-container>
+          <md-input-container ng-if="restockMovement.SupplierId">
+            <label>Select a product</label>
+            <md-select name="product" ng-model="restockMovement.ProductId">
+              <md-option ng-repeat="product in products" ng-value="product.ProductId">
+                {{ product.ProductName }}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container ng-if="restockMovement.ProductId">
+            <label>Quantity</label>
+            <input name="quantity" ng-model="restockMovement.Quantity" type="number" min="1" required>
+            <div ng-messages="restockForm.quantity.$error">
+              <div ng-message="required">Quantity is required to restock.</div>
+            </div>
+          </md-input-container>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end">
+          <md-button type="submit" class="md-primary" aria-label="Save">Save</md-button>
+        </md-card-actions>
+      </form>
+    </md-card>
+  </section>
+</md-content>
