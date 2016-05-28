@@ -1,0 +1,35 @@
+<md-content flex="grow" layout-align="start center" layout-padding>
+  <div layout="row" layout-align="center center" layout-margin>
+    <i class="fa fa-3x fa-truck"></i>
+    <h1 class="text-center">Stock Movements</h1>
+  </div>
+  <div layout="column" layout-align="center center">
+    <div>
+      <h2 ng-if="stockMovements.length === 0">There stock movements.</h2>
+      <md-card ng-repeat="stockMovement in stockMovements">
+        <md-card-content>
+          <div layout layout-align="center center">
+            <div layout="column" layout-align="center center">
+              <div>
+                <h5>Product</h5>
+                <h4>{{ stockMovement.ProductName }}</h4>
+              </div>
+              <div ng-if="stockMovement.SupplierId">
+                <h5>Supplier</h5>
+                <h4>{{ stockMovement.SupplierName }}</h4>
+              </div>
+              <div>
+                <h5 class="m-b-0">Quantity</h5>
+                <h4>{{ stockMovement.Quantity }}</h4>
+              </div>
+              <div>
+                <h5>Type</h5>
+                <h4>{{ stockMovement.Type === 0 ? "Outbound" : "Inbound"}}</h4>
+              </div>
+            </div>
+          </div>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+</md-content>

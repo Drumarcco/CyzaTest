@@ -30,7 +30,7 @@
           <md-button class="md-primary" href="/#/">Cyza Test</md-button>
           <span flex></span>
           <md-button href="/#/login" ng-if="!isLoggedIn()">Log In</md-button>
-          <md-button href="/#/" ng-if="isLoggedIn()">{{username}}</md-button>
+          <md-button href="/#/profile" ng-if="isLoggedIn()">{{username}}</md-button>
           <md-button ng-if="isLoggedIn()" ng-click="logout()">Log Out</md-button>
         </div>
       </md-toolbar>
@@ -61,6 +61,7 @@
   <script src="scripts/controllers/outbound.js"></script>
   <script src="scripts/controllers/products.js"></script>
   <script src="scripts/controllers/productSave.js"></script>
+  <script src="scripts/controllers/profileCtrl.js"></script>
   <script src="scripts/controllers/restock.js"></script>
   <script src="scripts/controllers/suppliers.js"></script>
   <script src="scripts/controllers/supplierDetails.js"></script>

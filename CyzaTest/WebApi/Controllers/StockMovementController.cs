@@ -17,6 +17,12 @@ namespace WebApi.Controllers
     {
         readonly StockMovementService service = new StockMovementService();
 
+        public async Task<IHttpActionResult> Get()
+        {
+            var movements = await service.GetByUser(User.Identity.GetUserId());
+            return Ok(ModelFactory.Create(movements));
+        }
+
         [Route("Inbound")]
         [HttpPost]
         public async Task<IHttpActionResult> PostInbound(StockMovementBindingModel model)

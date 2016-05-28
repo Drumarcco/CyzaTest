@@ -85,6 +85,11 @@ angular
         controller: 'OutboundCtrl',
         access_level: ACCESS_LEVELS.user
       })
+      .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl',
+        access_level: ACCESS_LEVELS.user
+      })
       .otherwise({
         redirectTo: '/'
       });

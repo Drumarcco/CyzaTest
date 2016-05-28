@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -10,6 +11,18 @@ namespace WebApi.DataAccess.Services
 {
     public class StockMovementService 
     {
+        public async Task<List<StockMovement>> GetByUser(string userId)
+        {
+            using (var db = new CyzaTestEntities())
+            {
+                return await db.StockMovements
+                    .Include(sm => sm.SupplierProduct)
+                    .Include(sm => sm.SupplierProduct.Product)
+                    .Include(sm => sm.SupplierProduct.Supplier)
+                    .Where(sm => sm.UserId == userId).ToListAsync();
+            }
+        }
+        
         public async Task<int> Restock(StockMovement stockMovement)
         {
             using (var db = new CyzaTestEntities())

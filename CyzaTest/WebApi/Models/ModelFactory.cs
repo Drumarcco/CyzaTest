@@ -28,6 +28,11 @@ namespace WebApi.Models
             return products.Select(Create);
         }
 
+        public object Create(List<StockMovement> supplierProducts)
+        {
+            return supplierProducts.Select(Create);
+        }
+
         public SupplierProductReturnModel Create(SupplierProduct supplierProduct)
         {
             return new SupplierProductReturnModel
@@ -50,6 +55,19 @@ namespace WebApi.Models
             };
         }
 
+        public StockMovementReturnModel Create(StockMovement stockMovement)
+        {
+            return new StockMovementReturnModel
+            {
+                Id = stockMovement.Id,
+                Type = stockMovement.Type,
+                SupplierId = stockMovement.SupplierId,
+                ProductId = stockMovement.ProductId,
+                Quantity = stockMovement.Quantity,
+                UserId = stockMovement.UserId
+            };
+        }
+
         public class SupplierProductReturnModel
         {
             public int ProductId { get; set; }
@@ -64,6 +82,18 @@ namespace WebApi.Models
             public int Id { get; set; }
             public string Name { get; set; }
             public int Stock { get; set; }
+        }
+
+        public class StockMovementReturnModel
+        {
+            public int Id { get; set; }
+            public int ProductId { get; set; }
+            public int? SupplierId { get; set; }
+            public string UserId { get; set; }
+            public string ProductName { get; set; }
+            public string SupplierName { get; set; }
+            public int Quantity { get; set; }
+            public StockMovementType Type { get; set; }
         }
     }
 }
