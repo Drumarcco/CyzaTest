@@ -1,0 +1,25 @@
+<md-content>
+  <section layout="column" layout-align="center center">
+    <h1>Outbound</h1>
+    <md-card>
+      <form ng-submit="outboundForm.$valid && outbound()" name="outboundForm" novalidate>
+        <md-card-content layout="column" layout-align="center center">
+          <h2>Product:</h2>
+          <h3>{{product.Name}}</h3>
+          <h2>Stock:</h2>
+          <h3>{{product.Stock}}</h3>
+          <md-input-container>
+            <label>Outbound Quantity</label>
+            <input name="quantity" ng-model="outboundMovement.Quantity" type="number" min="1" max="{{product.Stock}}" required>
+            <div ng-messages="restockForm.quantity.$error">
+              <div ng-message="required">Quantity is required to restock.</div>
+            </div>
+          </md-input-container>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end">
+          <md-button type="submit" class="md-primary" aria-label="Save">Save</md-button>
+        </md-card-actions>
+      </form>
+    </md-card>
+  </section>
+</md-content>

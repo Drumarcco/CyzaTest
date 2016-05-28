@@ -8,7 +8,6 @@ namespace WebApi.Models
 {
     public class StockMovementBindingModel
     {
-        [Required]
         public int SupplierId { get; set; }
 
         [Required]

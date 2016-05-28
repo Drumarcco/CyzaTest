@@ -18,7 +18,14 @@
             </div>
           </div>
         </md-card-content>
-        <md-card-actions layout layout-align="end">
+        <md-card-actions layout layout-align="end center">
+          <div flex layout layout-margin layout-align="start center">
+            <h4><b>In Stock:</b></h4>
+            <h4>{{ product.Stock }}</h4>
+            <md-button href="/#/outbound/{{ product.Id }}" class="md-icon-button md-warn" aria-label="Take from stock">
+              <md-icon md-font-icon="fa fa-24 fa-minus"></md-icon>
+            </md-button>
+          </div>
           <md-button href="/#/products/update/{{product.Id}}" class="md-icon-button md-primary" aria-label="Edit">
             <md-icon md-font-icon="fa fa-24 fa-pencil"></md-icon>
           </md-button>

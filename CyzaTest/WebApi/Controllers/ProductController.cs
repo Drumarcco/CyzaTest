@@ -20,7 +20,7 @@ namespace WebApi.Controllers
         {
             var products = await service.GetAll();
             if (products.Count == 0) return NotFound();
-            return Ok(products);
+            return Ok(ModelFactory.Create(products));
         }
 
         public async Task<IHttpActionResult> Get(int id)
@@ -32,7 +32,7 @@ namespace WebApi.Controllers
 
             var product = await service.GetById(id);
             if (product == null) return NotFound();
-            return Ok(product);
+            return Ok(ModelFactory.Create(product));
         }
 
         public async Task<IHttpActionResult> Post(PostProduct model)

@@ -45,15 +45,16 @@ namespace WebApi.DataAccess.Services
         {
             using (var db = new CyzaTestEntities())
             {
-                return await db.Products.ToListAsync();
+                return await db.Products.Include(p => p.Stock).ToListAsync();
             }
         }
 
-        public async Task<Product> GetById(params object[] id)
+        public async Task<Product> GetById(int id)
         {
             using (var db = new CyzaTestEntities())
             {
-                return await db.Products.FindAsync(id);
+                return await db.Products.Include(p => p.Stock)
+                    .SingleOrDefaultAsync(p => p.Id == id);
             }
         }
     }

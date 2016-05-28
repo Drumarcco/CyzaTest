@@ -18,7 +18,8 @@ namespace WebApi.Controllers
         readonly StockMovementService service = new StockMovementService();
 
         [Route("Inbound")]
-        public async Task<IHttpActionResult> Post(StockMovementBindingModel model)
+        [HttpPost]
+        public async Task<IHttpActionResult> PostInbound(StockMovementBindingModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -31,11 +32,32 @@ namespace WebApi.Controllers
                 ProductId = model.ProductId,
                 SupplierId = model.SupplierId,
                 Quantity = model.Quantity,
-                Type = StockMovementType.Inbound,
                 UserId = User.Identity.GetUserId()
             };
 
             var changes = await service.Restock(stockMovement);
+            if (changes > 0) return Ok();
+            return InternalServerError();
+        }
+
+        [Route("Outbound")]
+        [HttpPost]
+        public async Task<IHttpActionResult> PostOutbound(StockMovementBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var stockMovement = new StockMovement
+            {
+                Id = 0,
+                ProductId = model.ProductId,
+                Quantity = model.Quantity,
+                UserId =  User.Identity.GetUserId()
+            };
+
+            var changes = await service.Outbound(stockMovement);
             if (changes > 0) return Ok();
             return InternalServerError();
         }

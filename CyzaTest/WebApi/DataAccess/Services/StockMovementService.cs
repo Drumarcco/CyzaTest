@@ -18,6 +18,16 @@ namespace WebApi.DataAccess.Services
                 await repository.Restock(stockMovement);
                 return await db.SaveChangesAsync();
             }
+        }
+
+        public async Task<int> Outbound(StockMovement stockMovement)
+        {
+            using (var db = new CyzaTestEntities())
+            {
+                var repository = new StockMovementRepository(db);
+                await repository.Outbound(stockMovement);
+                return await db.SaveChangesAsync();
+            }
         } 
     }
 }

@@ -75,9 +75,14 @@ angular
         controller: 'SupplierSaveProductCtrl',
         access_level: ACCESS_LEVELS.user
       })
-      .when('/stock', {
+      .when('/restock', {
         templateUrl: 'views/restock.html',
         controller: 'RestockCtrl',
+        access_level: ACCESS_LEVELS.user
+      })
+      .when('/outbound/:productId', {
+        templateUrl: 'views/outbound.html',
+        controller: 'OutboundCtrl',
         access_level: ACCESS_LEVELS.user
       })
       .otherwise({

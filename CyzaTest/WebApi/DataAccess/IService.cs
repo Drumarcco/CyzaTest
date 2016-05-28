@@ -12,6 +12,5 @@ namespace WebApi.DataAccess
         Task<int> Update(T obj);
         Task<int> Delete(T obj);
         Task<List<T>> GetAll();
-        Task<T> GetById(params object[] id);
     }
 }

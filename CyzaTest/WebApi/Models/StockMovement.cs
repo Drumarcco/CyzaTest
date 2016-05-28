@@ -15,7 +15,7 @@ namespace WebApi.Models
     public partial class StockMovement
     {
         public int Id { get; set; }
-        public int SupplierId { get; set; }
+        public Nullable<int> SupplierId { get; set; }
         public int ProductId { get; set; }
         public string UserId { get; set; }
         public StockMovementType Type { get; set; }

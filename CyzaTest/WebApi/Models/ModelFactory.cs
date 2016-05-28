@@ -45,7 +45,8 @@ namespace WebApi.Models
             return new ProductReturnModel
             {
                 Id = product.Id,
-                Name = product.Name
+                Name = product.Name,
+                Stock = product.Stock.Quantity
             };
         }
 
@@ -62,6 +63,7 @@ namespace WebApi.Models
         {
             public int Id { get; set; }
             public string Name { get; set; }
+            public int Stock { get; set; }
         }
     }
 }
